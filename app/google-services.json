@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "68625167958",
+    "project_id": "drawforme-58157",
+    "storage_bucket": "drawforme-58157.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68625167958:android:1d0c90fe00d8922a776df7",
+        "android_client_info": {
+          "package_name": "com.example.drawforme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "68625167958-1gba83eta2krjbt3d2gsfll5d86fuvc0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.drawforme",
+            "certificate_hash": "833133e81d317bbcf2498af5b75c6dd81df0a0e5"
+          }
+        },
+        {
+          "client_id": "68625167958-dd9ir89tf9k1igkusna71dssrddv9k5l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.drawforme",
+            "certificate_hash": "dff880fb9ef6a21d170537e4dba8998ce96d6a3c"
+          }
+        },
+        {
+          "client_id": "68625167958-010el4r4e7frtqafddptojk2i76b6j64.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHBkURI7Pd6tQDBgsMKj3qhiJly62JdcQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "68625167958-010el4r4e7frtqafddptojk2i76b6j64.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
