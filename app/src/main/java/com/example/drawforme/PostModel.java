@@ -6,19 +6,19 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-/* 사용 할지 안할지 모름 */
-
 public class PostModel {
     private String title;
     private String desc;
+    private String author;
 
     public PostModel() {
         // Default constructor
     }
 
-    public PostModel(String title, String desc) {
+    public PostModel(String title, String desc, String author) {
         this.title = title;
         this.desc = desc;
+        this.author = author;
     }
 
     public void setDesc(String desc) {
@@ -29,11 +29,19 @@ public class PostModel {
         this.title = title;
     }
 
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     public String getDesc() {
         return this.desc;
     }
 
     public String getTitle() {
         return this.title;
+    }
+
+    public String getAuthor() {
+        return this.author;
     }
 }

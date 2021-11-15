@@ -46,6 +46,8 @@ public class Adapter extends RecyclerView.Adapter<Holder> {
     @Override
     public void onBindViewHolder(@NonNull Holder holder, @SuppressLint("RecyclerView") int position) {
         holder.tv.setText(postModelList.get(position).getTitle());
+        holder.tv2.setText(postModelList.get(position).getAuthor());
+
         holder.tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,10 +67,12 @@ public class Adapter extends RecyclerView.Adapter<Holder> {
 }
 
 class Holder extends RecyclerView.ViewHolder {
-    TextView tv;
+    TextView tv; // title
+    TextView tv2; // author
 
     public Holder(@NonNull View itemView) {
         super(itemView);
         tv = itemView.findViewById(R.id.show_items_tv);
+        tv2 = itemView.findViewById(R.id.show_author_name_tv);
     }
 }

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -59,6 +60,7 @@ public class AddActivity extends AppCompatActivity{
                 PostModel PM = new PostModel();
                 PM.setTitle(editTitle.getText().toString());
                 PM.setDesc(editDesc.getText().toString());
+                PM.setAuthor(mAuth.getCurrentUser().getDisplayName());
                 database.getReference().child("posts").push().setValue(PM); // 데이터 추가
                 editTitle.setText("");
                 editDesc.setText("");
