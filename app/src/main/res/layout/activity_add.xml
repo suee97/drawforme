@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="제목"
+        android:textSize="20sp" />
+    <EditText
+        android:id="@+id/get_title_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="ex) 잠자는 고양이를 그려주세요"
+        android:maxLines="1"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="요청사항"
+        android:textSize="20sp"/>
+    <EditText
+        android:id="@+id/get_desc_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="ex) 품종은 페르시아 고양이면 좋겠습니다."
+        android:lines="10"
+        android:inputType="text|textMultiLine"
+        android:maxLines="10"/>
+    <Button
+        android:id="@+id/save_title_desc_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="저장"/>
+
+</LinearLayout>

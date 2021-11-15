@@ -2,21 +2,21 @@
     <item
         android:id="@+id/page_1"
         android:enabled="true"
-        android:title=""
+        android:title="home"
         android:icon="@drawable/ic_baseline_home_24"/>
     <item
         android:id="@+id/page_2"
         android:enabled="true"
-        android:title=""
-        android:icon="@drawable/ic_baseline_search_24"/>
+        android:title="asking"
+        android:icon="@drawable/ic_baseline_create_24"/>
     <item
         android:id="@+id/page_3"
         android:enabled="true"
-        android:title=""
+        android:title="list"
         android:icon="@drawable/ic_baseline_format_align_justify_24"/>
     <item
         android:id="@+id/page_4"
         android:enabled="true"
-        android:title=""
+        android:title="profile"
         android:icon="@drawable/ic_baseline_person_24"/>
 </menu>

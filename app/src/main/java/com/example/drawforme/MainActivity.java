@@ -28,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
     private SignInButton signInButton;
     private GoogleSignInClient mGoogleSignInClient;
-    private String TAG="mainTag";
+    private String TAG = "mainTag";
     private FirebaseAuth mAuth;
-    private int RC_SIGN_IN=123;
+    private int RC_SIGN_IN = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
     // [END auth_with_google]
 
 
-
     private void signOut() {
         // Firebase sign out
         mAuth.signOut();
@@ -162,6 +161,4 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
 }

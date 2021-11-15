@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Drawforme">
         <activity
+            android:name=".PostActivity"
+            android:exported="true" />
+        <activity
+            android:name=".AddActivity"
+            android:exported="true" />
+        <activity
             android:name=".HomeActivity"
             android:exported="true" />
         <activity

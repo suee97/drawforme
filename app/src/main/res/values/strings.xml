@@ -2,8 +2,7 @@
 <resources>
     <string name="app_name">drawforme</string>
 
-
     <string name="dlg_1">
-        사용법 내용이 표시될 곳입니다.\n사용법 내용이 표시될 곳입니다.\n사용법 내용이 표시될 곳입니다.\n사용법 내용이 표시될 곳입니다.
+        사용법이 표시될 공간입니다.\n\n\n\n\n\n\n
     </string>
 </resources>
