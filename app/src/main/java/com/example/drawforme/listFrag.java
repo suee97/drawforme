@@ -44,7 +44,7 @@ public class listFrag extends Fragment {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
-        database = FirebaseDatabase.getInstance(); // db연동
+        database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("posts");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -59,7 +59,7 @@ public class listFrag extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // 에러 발생시
+                Toast.makeText(getContext(), "데이터베이스 에러", Toast.LENGTH_SHORT).show();
             }
         });
         adapter = new Adapter(arrayList);

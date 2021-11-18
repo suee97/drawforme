@@ -29,7 +29,8 @@
                 android:layout_height="wrap_content"
                 android:text="이메일 표시공간"
                 android:textSize="20sp"
-                android:padding="10dp"/>
+                android:padding="10dp"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/logout_btn"
@@ -38,7 +39,7 @@
                 android:text="로그아웃"
                 android:textSize="20sp"
                 android:padding="10dp"
-                android:background="@drawable/border1"/>
+                android:textColor="@color/black"/>
         </LinearLayout>
 
     </LinearLayout>

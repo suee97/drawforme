@@ -26,20 +26,44 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.annotation.Nullable;
 
 public class profileFrag extends Fragment implements View.OnClickListener {
+    private ImageView profileImg;
+    private Bitmap bm;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.profile_fragment,container,false);
+
+        profileImg = v.findViewById(R.id.profile_image);
         TextView email = v.findViewById(R.id.email_address);
         TextView logout_btn = v.findViewById(R.id.logout_btn);
+
         logout_btn.setOnClickListener(this);
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(requireContext());
         email.setText(signInAccount.getEmail());
+
+        // 프로필 이미지 표시
+        try {
+            URL profileUrl = new URL(signInAccount.getPhotoUrl().toString());
+            HttpURLConnection conn = (HttpURLConnection) profileUrl.openConnection();
+            conn.setDoInput(true);
+            conn.connect();
+
+            InputStream is = conn.getInputStream();
+            bm = BitmapFactory.decodeStream(is);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        profileImg.setImageBitmap(bm);
 
         return v;
     }

@@ -25,6 +25,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class AddActivity extends AppCompatActivity{
 
@@ -61,6 +62,11 @@ public class AddActivity extends AppCompatActivity{
                 PM.setTitle(editTitle.getText().toString());
                 PM.setDesc(editDesc.getText().toString());
                 PM.setAuthor(mAuth.getCurrentUser().getDisplayName());
+
+                // 랜덤id
+                String randomUUid = (UUID.randomUUID().toString().replaceAll("-",""));
+                PM.setUuid(randomUUid);
+
                 database.getReference().child("posts").push().setValue(PM); // 데이터 추가
                 editTitle.setText("");
                 editDesc.setText("");

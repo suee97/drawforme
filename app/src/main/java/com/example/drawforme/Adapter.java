@@ -54,6 +54,7 @@ public class Adapter extends RecyclerView.Adapter<Holder> {
                 Intent intent = new Intent(v.getContext(), PostActivity.class);
                 intent.putExtra("title_", postModelList.get(position).getTitle());
                 intent.putExtra("desc_", postModelList.get(position).getDesc());
+                intent.putExtra("uuid_", postModelList.get(position).getUuid());
                 v.getContext().startActivity(intent);
             }
         });

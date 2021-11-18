@@ -10,15 +10,17 @@ public class PostModel {
     private String title;
     private String desc;
     private String author;
+    private String uuid;
 
     public PostModel() {
         // Default constructor
     }
 
-    public PostModel(String title, String desc, String author) {
+    public PostModel(String title, String desc, String author, String uuid) {
         this.title = title;
         this.desc = desc;
         this.author = author;
+        this.uuid = uuid;
     }
 
     public void setDesc(String desc) {
@@ -33,6 +35,10 @@ public class PostModel {
         this.author = author;
     }
 
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
     public String getDesc() {
         return this.desc;
     }
@@ -44,4 +50,6 @@ public class PostModel {
     public String getAuthor() {
         return this.author;
     }
+
+    public String getUuid() {return this.uuid;}
 }
