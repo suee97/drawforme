@@ -58,21 +58,25 @@ public class AddActivity extends AppCompatActivity{
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PostModel PM = new PostModel();
-                PM.setTitle(editTitle.getText().toString());
-                PM.setDesc(editDesc.getText().toString());
-                PM.setAuthor(mAuth.getCurrentUser().getDisplayName());
+                if(editTitle.getText().toString().isEmpty() || editDesc.getText().toString().isEmpty()) {
+                    Toast.makeText(view.getContext(), "질문을 마저 채워주세요!", Toast.LENGTH_SHORT).show();
+                } else {
+                    PostModel PM = new PostModel();
+                    PM.setTitle(editTitle.getText().toString());
+                    PM.setDesc(editDesc.getText().toString());
+                    PM.setAuthor(mAuth.getCurrentUser().getDisplayName());
 
-                // 랜덤id
-                String randomUUid = (UUID.randomUUID().toString().replaceAll("-",""));
-                PM.setUuid(randomUUid);
+                    // 랜덤id
+                    String randomUUid = (UUID.randomUUID().toString().replaceAll("-",""));
+                    PM.setUuid(randomUUid);
 
-                database.getReference().child("posts").push().setValue(PM); // 데이터 추가
-                editTitle.setText("");
-                editDesc.setText("");
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                startActivity(intent);
-                Toast.makeText(getApplicationContext(), "저장이 완료되었습니다.", Toast.LENGTH_LONG).show();
+                    database.getReference().child("posts").push().setValue(PM); // 데이터 추가
+                    editTitle.setText("");
+                    editDesc.setText("");
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(), "저장이 완료되었습니다.", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

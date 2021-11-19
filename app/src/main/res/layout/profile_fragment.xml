@@ -13,7 +13,7 @@
         <ImageView
             android:id="@+id/profile_image"
             android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:padding="10dp"
             android:src="@drawable/ic_baseline_person_24" />
@@ -41,7 +41,6 @@
                 android:padding="10dp"
                 android:textColor="@color/black"/>
         </LinearLayout>
-
     </LinearLayout>
 
     <LinearLayout
@@ -53,7 +52,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="내가 쓴 글 확인"
+            android:text="내가 질문한 글 보기"
             android:textSize="30sp"
             android:padding="10dp"/>
 
@@ -68,7 +67,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="내가 쓴 댓글 확인"
+            android:text="내가 남긴 그림 보기"
             android:textSize="30sp"
             android:padding="10dp"/>
 

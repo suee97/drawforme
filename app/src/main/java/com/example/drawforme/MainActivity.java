@@ -10,12 +10,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -24,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+@SuppressWarnings("deprecation")
 public class MainActivity extends AppCompatActivity {
 
     private SignInButton signInButton;
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private String TAG = "mainTag";
     private FirebaseAuth mAuth;
     private int RC_SIGN_IN = 123;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         signInText.setText("Sign in with Google");
         signInText.setTextSize(20);
 
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
 
         // [START config_signin]
         // Configure Google Sign In
@@ -51,11 +57,6 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         // [END config_signin]
-
-        // [START initialize_auth]
-        // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
-        // [END initialize_auth]
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
                 firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
-                Log.w(TAG, "Google sign in failed", e);
-                Toast.makeText(getApplicationContext(), "Google sign in Failed", Toast.LENGTH_LONG).show();
+//                Log.w(TAG, "Google sign in failed", e);
+                Toast.makeText(getApplicationContext(), "로그인 실패..", Toast.LENGTH_LONG).show();
             }
         }
     }

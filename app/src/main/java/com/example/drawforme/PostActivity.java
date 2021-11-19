@@ -30,6 +30,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -54,7 +56,6 @@ public class PostActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseStorage storage;
     private ImageView postIv;
-
 
     ListView listView;
     String strTitle, strDesc, uuid;
@@ -82,13 +83,36 @@ public class PostActivity extends AppCompatActivity {
         strTitle = getIntent().getStringExtra("title_");
         strDesc = getIntent().getStringExtra("desc_");
 
+        // 제목, 내용 보이게 하기
         tvTitle.setText(strTitle);
         tvDesc.setText(strDesc + "\nuuid = " + uuid);
 
+        // 추가버튼 클릭 시 앨범열기 (처음으로 등록)
         tvNewComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 selectAlbum(); // 앨범열기
+            }
+        });
+
+        // 이미지 있으면 불러오기
+        StorageReference storageRef = storage
+                .getReferenceFromUrl("gs://drawforme-58157.appspot.com/");
+        storageRef.child("post_images/" + uuid + "_0000").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                // 이미지 로드 성공시
+                tvNewComment.setVisibility(View.INVISIBLE);
+                Toast.makeText(getApplicationContext(), "이미 등록된 그림이 있습니다.", Toast.LENGTH_LONG).show();
+                Glide.with(getApplicationContext())
+                        .load(uri)
+                        .into(postIv);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // 이미지 로드 실패시
+                Toast.makeText(getApplicationContext(), "등록된 그림이 없습니다. 추가해주세요!", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -108,15 +132,18 @@ public class PostActivity extends AppCompatActivity {
                         photoURI = data.getData();
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), photoURI);
                         postIv.setImageBitmap(bitmap);
-                        final String cu = mAuth.getUid();
-                        String filename = cu + "_" + System.currentTimeMillis();
+//                        final String cu = mAuth.getUid();
+//                        String filename = cu + "_" + System.currentTimeMillis();
+                        String filename = uuid + "_0000";
                         StorageReference storageRef = storage
                                 .getReferenceFromUrl("gs://drawforme-58157.appspot.com/")
-                                .child(uuid + "/" + filename);
+                                .child("post_images/" + filename);
                         UploadTask uploadTask;
                         Uri file = null;
                         file = photoURI;
                         uploadTask = storageRef.putFile(file); // storage에 저장하는 부분
+                        Toast.makeText(getApplicationContext(), "등록이 완료되었습니다.", Toast.LENGTH_LONG).show();
+                        tvNewComment.setVisibility(View.INVISIBLE);
                     }catch (Exception e){
                         e.printStackTrace();
                     }

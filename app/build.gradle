@@ -5,13 +5,16 @@ plugins {
 android {
     compileSdk 31
 
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+
     defaultConfig {
         applicationId "com.example.drawforme"
         minSdk 21
         targetSdk 31
         versionCode 1
         versionName "1.0"
-
+        useLibrary  'org.apache.http.legacy'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

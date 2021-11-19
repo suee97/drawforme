@@ -33,17 +33,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="24sp"
-        android:text="답변"
+        android:text="등록된 그림"
         android:textColor="@color/black"
         android:padding="8dp"
-        android:background="@drawable/border5"/>
+        android:background="@drawable/border5" />
 
     <ImageView
         android:id="@+id/post_iv"
         android:src="@drawable/default_img"
         android:layout_gravity="center"
-        android:layout_height="400dp"
-        android:layout_width="400dp"/>
+        android:layout_height="300dp"
+        android:layout_width="300dp"/>
 
     <TextView
         android:id="@+id/new_comment_tv"
@@ -53,6 +53,7 @@
         android:layout_gravity="center"
         android:text="추가하기"
         android:textSize="24sp"
-        android:padding="20dp"/>
+        android:padding="20dp"
+        android:visibility="visible"/>
 
 </LinearLayout>
