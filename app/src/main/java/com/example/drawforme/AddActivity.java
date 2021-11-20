@@ -70,6 +70,9 @@ public class AddActivity extends AppCompatActivity{
                     String randomUUid = (UUID.randomUUID().toString().replaceAll("-",""));
                     PM.setUuid(randomUUid);
 
+                    // 처음엔 그림이 없다고 저장
+                    PM.setIsExist(false);
+
                     database.getReference().child("posts").push().setValue(PM); // 데이터 추가
                     editTitle.setText("");
                     editDesc.setText("");

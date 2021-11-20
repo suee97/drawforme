@@ -19,6 +19,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Array;
@@ -46,9 +47,12 @@ public class listFrag extends Fragment {
         arrayList = new ArrayList<>();
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("posts");
+
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                Query select = FirebaseDatabase.getInstance().getReference().child("posts");
+//                Toast.makeText(getContext(), select.toString(), Toast.LENGTH_LONG).show();
                 arrayList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren() ) {
                     PostModel postModelList = snapshot.getValue(PostModel.class);

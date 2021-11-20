@@ -38,6 +38,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -47,6 +48,8 @@ import org.w3c.dom.Text;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 
 public class PostActivity extends AppCompatActivity {
 
@@ -57,9 +60,9 @@ public class PostActivity extends AppCompatActivity {
     private FirebaseStorage storage;
     private ImageView postIv;
 
-    ListView listView;
     String strTitle, strDesc, uuid;
     TextView tvTitle, tvDesc, tvNewComment;
+    TextView tmp_tmp;
 
     Uri photoURI;
 
@@ -77,7 +80,8 @@ public class PostActivity extends AppCompatActivity {
         tvTitle = (TextView) findViewById(R.id.get_title_from_adapter);
         tvDesc = (TextView) findViewById(R.id.get_desc_from_adapter);
         tvNewComment = (TextView) findViewById(R.id.new_comment_tv);
-        
+        tmp_tmp = (TextView) findViewById(R.id.tmp_tmp);
+
         // 이전 액티비티에서 데이터 받아오기
         uuid = getIntent().getStringExtra("uuid_");
         strTitle = getIntent().getStringExtra("title_");
@@ -144,6 +148,25 @@ public class PostActivity extends AppCompatActivity {
                         uploadTask = storageRef.putFile(file); // storage에 저장하는 부분
                         Toast.makeText(getApplicationContext(), "등록이 완료되었습니다.", Toast.LENGTH_LONG).show();
                         tvNewComment.setVisibility(View.INVISIBLE);
+
+
+                        // 여기서 값수정
+                        database.getReference().child("posts").addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                PostModel tmp = snapshot.getValue(PostModel.class);
+                                String tmp2 = snapshot.getKey();
+                                String tmp3 = tmp.getUuid();
+                                tmp_tmp.setText(tmp + " // " + tmp2 + " // " + tmp3);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+
                     }catch (Exception e){
                         e.printStackTrace();
                     }

@@ -11,16 +11,18 @@ public class PostModel {
     private String desc;
     private String author;
     private String uuid;
+    private Boolean isExist;
 
     public PostModel() {
         // Default constructor
     }
 
-    public PostModel(String title, String desc, String author, String uuid) {
+    public PostModel(String title, String desc, String author, String uuid, Boolean isExist) {
         this.title = title;
         this.desc = desc;
         this.author = author;
         this.uuid = uuid;
+        this.isExist = isExist;
     }
 
     public void setDesc(String desc) {
@@ -39,6 +41,8 @@ public class PostModel {
         this.uuid = uuid;
     }
 
+    public void setIsExist(Boolean isExist) { this.isExist = isExist; }
+
     public String getDesc() {
         return this.desc;
     }
@@ -51,5 +55,7 @@ public class PostModel {
         return this.author;
     }
 
-    public String getUuid() {return this.uuid;}
+    public String getUuid() { return this.uuid; }
+
+    public Boolean getIsExist() { return this.isExist; }
 }
