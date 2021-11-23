@@ -36,7 +36,8 @@
             android:textColor="@color/black"
             android:textColorHint="#4D738F"
             android:background="@android:color/transparent"
-            android:layout_margin="4dp"/>
+            android:layout_margin="4dp"
+            android:inputType="text"/>
 
     </LinearLayout>
 
@@ -62,11 +63,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:gravity="top"
+            android:gravity="top|left"
             android:hint="ex) 품종은 페르시아 고양이면 좋겠습니다."
-            android:lines="10"
             android:inputType="text|textMultiLine"
-            android:maxLines="10"
+            android:lines="10"
+            android:maxLines="8"
             android:fontFamily="@font/nanum2"
             android:textColor="@color/black"
             android:textColorHint="#4D738F"

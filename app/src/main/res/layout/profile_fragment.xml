@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/sexy1">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@drawable/border2">
+        android:layout_marginTop="8dp">
 
         <ImageView
             android:id="@+id/profile_image"
@@ -16,12 +18,15 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:padding="10dp"
-            android:src="@drawable/ic_baseline_person_24" />
+            android:src="@drawable/ic_baseline_person_24"
+            android:background="@color/sexy1"
+            app:tint="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/sexy1">
 
             <TextView
                 android:id="@+id/email_address"
@@ -30,7 +35,9 @@
                 android:text="이메일 표시공간"
                 android:textSize="20sp"
                 android:padding="10dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/nanum1"/>
 
             <TextView
                 android:id="@+id/logout_btn"
@@ -39,39 +46,110 @@
                 android:text="로그아웃"
                 android:textSize="20sp"
                 android:padding="10dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/nanum1"/>
         </LinearLayout>
     </LinearLayout>
 
+    <!-- Spacer -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        android:layout_marginBottom="24dp"/>
+    <!-- ////// -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@drawable/border2">
+        android:background="@color/sexy1">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="내가 질문한 글 보기"
+            android:text="앱 정보"
             android:textSize="30sp"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/nanum2"/>
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@drawable/border2">
+        android:background="@color/sexy1">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="내가 남긴 그림 보기"
+            android:text="사용법"
             android:textSize="30sp"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/nanum2"/>
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/sexy1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="관리자 화면"
+            android:textSize="30sp"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/nanum2"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/sexy1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="종료하기"
+            android:textSize="30sp"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/nanum2"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white" />
 
 </LinearLayout>

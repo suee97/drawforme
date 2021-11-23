@@ -5,4 +5,6 @@
     <string name="dlg_1">
         사용법이 표시될 공간입니다.\n\n\n\n\n\n\n
     </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

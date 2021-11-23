@@ -7,16 +7,6 @@
     android:paddingTop="16dp"
     android:paddingBottom="16dp">
 
-    <TextView
-        android:id="@+id/list_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:text="isExist/total"
-        android:textSize="16sp"
-        android:fontFamily="@font/nanum2"
-        android:layout_margin="8dp"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"

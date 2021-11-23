@@ -10,15 +10,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="show welcome message"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:fontFamily="@font/nanum1"
+        android:layout_margin="30dp"
+        android:layout_gravity="center"
+        android:textColor="@color/white"/>
 
-    <TextView
-        android:id="@+id/check_how_to_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border1"
-        android:padding="20dp"
-        android:text="사용법 확인"
-        android:textSize="20sp" />
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="30dp"
+        android:background="@color/white">
+
+        <androidx.viewpager.widget.PagerTitleStrip
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </androidx.viewpager.widget.ViewPager>
+
+
 
 </LinearLayout>

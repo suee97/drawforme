@@ -15,10 +15,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,12 +36,15 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -57,7 +63,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class PostActivity extends AppCompatActivity {
+public class PostActivity extends AppCompatActivity implements View.OnClickListener {
 
     private int FROM_ALBUM = 10;
     private FirebaseDatabase database;
@@ -65,9 +71,10 @@ public class PostActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseStorage storage;
     private ImageView postIv;
+    private FirebaseUser user;
 
     String strTitle, strDesc, uuid, strAuth;
-    TextView tvTitle, tvDesc, tvNewComment;
+    TextView tvTitle, tvDesc, tvNewComment, deleteBtn;
     Button imgUploadBtn;
     Uri photoURI;
 
@@ -80,12 +87,15 @@ public class PostActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         postIv = (ImageView) findViewById(R.id.post_iv);
         tvTitle = (TextView) findViewById(R.id.get_title_from_adapter);
         tvDesc = (TextView) findViewById(R.id.get_desc_from_adapter);
         tvNewComment = (TextView) findViewById(R.id.new_comment_tv);
         imgUploadBtn = (Button) findViewById(R.id.img_upload_btn);
+        deleteBtn = (TextView) findViewById(R.id.delete_post_btn);
+        deleteBtn.setOnClickListener(this);
 
         // 이전 액티비티에서 데이터 받아오기
         uuid = getIntent().getStringExtra("uuid_");
@@ -96,29 +106,16 @@ public class PostActivity extends AppCompatActivity {
         // 제목, 내용 보이게 하기
         tvTitle.setText(strTitle);
         tvDesc.setText(strDesc + "\nuuid = " + uuid);
+        tvDesc.setMovementMethod(new ScrollingMovementMethod());
 
         // 추가버튼 클릭 시
-        tvNewComment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setTitle("이미지 업로드")
-                        .setMessage("그림 업로드하기\n아래 추가버튼을 눌러주세요")
-                        .setPositiveButton("추가하기", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                selectAlbum();
-                            }
-                        });
-                AlertDialog alert = builder.create();
-                alert.show();
+        tvNewComment.setOnClickListener(this);
 
-//                Dialog imgDialog = new Dialog(PostActivity.this);
-//                imgDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//                imgDialog.setContentView(R.layout.image_upload_dialog);
-//                imgDialog.show();
-//                selectAlbum();
-            }
-        });
+        // 유저랑 작성자 다르면 삭제버튼 disabled
+        if(user.getDisplayName().equals(strAuth) != true) {
+            deleteBtn.setBackgroundResource(R.drawable.border10);
+            deleteBtn.setEnabled(false);
+        }
 
 
         // 이미지 있으면 불러오기
@@ -139,42 +136,23 @@ public class PostActivity extends AppCompatActivity {
                 makeToast("그림이 없습니다. 추가해주세요!");
             }
         });
-
-
-        // Value Event 리스너
-        database.getReference().child("posts").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-                    PostModel pm = childSnapshot.getValue(PostModel.class);
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode != RESULT_OK){
+        if (resultCode != RESULT_OK) {
             Toast.makeText(getApplicationContext(), "이미지 선택 안함", Toast.LENGTH_SHORT).show();
             return;
         }
-        switch (requestCode){
-            case 10 : {
+        switch (requestCode) {
+            case 10: {
                 //앨범에서 가져오기
-                if(data.getData() != null){
-                    try{
+                if (data.getData() != null) {
+                    try {
                         photoURI = data.getData();
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), photoURI);
                         postIv.setImageBitmap(bitmap);
-//                        final String cu = mAuth.getUid();
-//                        String filename = cu + "_" + System.currentTimeMillis();
                         String filename = uuid + "_0000";
                         StorageReference storageRef = storage
                                 .getReferenceFromUrl("gs://drawforme-58157.appspot.com/")
@@ -187,34 +165,10 @@ public class PostActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "등록이 완료되었습니다.", Toast.LENGTH_LONG).show();
                         tvNewComment.setVisibility(View.INVISIBLE);
 
-
-//                        HashMap hashMap = new HashMap();
-//                        hashMap.put("isExist", true);
-//                        String itemKey = database.getReference("posts").push().getKey();
-//                        database.getReference().child("posts/"+itemKey).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
-//                            @Override
-//                            public void onSuccess(Object o) {
-//                                Toast.makeText(getApplicationContext(), "업데이트 완료", Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-
-//                        // 여기서 값수정
-//                        String itemKey = database.getReference("posts").push().getKey();
-//                        database.getReference().child("posts/" + itemKey).addValueEventListener(new ValueEventListener() {
-//                            @Override
-//                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                                tmp_tmp.setText(itemKey);
-//                                PostModel pm = snapshot.getValue(PostModel.class);
-//                            }
-//
-//                            @Override
-//                            public void onCancelled(@NonNull DatabaseError error) {
-//                                // 에러 발생시
-//                            }
-//                        });
+                        // 데이터 업데이트
                         updateDB(strTitle, strDesc, strAuth, uuid, true);
 
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -223,7 +177,7 @@ public class PostActivity extends AppCompatActivity {
         }
     }
 
-    public void selectAlbum(){
+    public void selectAlbum() {
         //앨범에서 이미지 가져옴
         //앨범 열기
         Intent intent = new Intent(Intent.ACTION_PICK);
@@ -240,6 +194,74 @@ public class PostActivity extends AppCompatActivity {
         databaseReference.updateChildren(childUpdate);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            // 삭제 버튼(포스트, 그림 지우기)
+            case R.id.delete_post_btn:
+                if (user.getDisplayName().equals(strAuth) != true) {
+                    makeToast("작성자와 유저가 다릅니다.");
+                } else {
+                    AlertDialog.Builder builder_delete = new AlertDialog.Builder(v.getContext());
+                    builder_delete.setTitle("삭제")
+                            .setMessage("삭제하시겠습니까?")
+                            .setPositiveButton("네", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Query deleteQuery = databaseReference.child("posts/" + uuid);
+                                    deleteQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                                                childSnapshot.getRef().removeValue();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                            makeToast("삭제에 실패했습니다.");
+                                        }
+                                    });
+
+                                    // 홈 인텐트 이동
+                                    Intent goHomeIntent = new Intent(v.getContext(), HomeActivity.class);
+                                    startActivity(goHomeIntent);
+                                    makeToast("삭제되었습니다.");
+                                }
+                            })
+                            .setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    // 다이얼로그 끝내기
+                                }
+                            });
+
+                    AlertDialog alert_delete = builder_delete.create();
+                    alert_delete.show();
+                }
+                break;
+
+            // 추가하기 버튼
+            case R.id.new_comment_tv:
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle("이미지 업로드")
+                        .setMessage("그림 업로드하기\n아래 추가버튼을 눌러주세요")
+                        .setPositiveButton("추가하기", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                selectAlbum();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    // 토스트 만들기 + 보여주기
     public void makeToast(String msg) {
         Toast.makeText(this.getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }

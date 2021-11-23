@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
-        android:text="title이 표시될 공간"
+        android:text="title"
         android:textColor="@color/sexy1"
         android:padding="8dp"
         android:maxLines="1"
@@ -30,20 +30,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:text="desc가 표시될 공간"
+        android:text="desc"
         android:textColor="@color/sexy1"
         android:padding="8dp"
         android:fontFamily="@font/nanum2"
-        android:background="@drawable/border8" />
+        android:background="@drawable/border8"
+        android:maxLines="8"
+        android:lines="8"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right">
+
+        <TextView
+            android:id="@+id/delete_post_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="삭제하기"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:fontFamily="@font/nanum2"
+            android:background="@drawable/border9"
+            android:padding="8dp"
+            android:layout_margin="4dp"
+            android:scrollbars="vertical"/>
+
+    </LinearLayout>
+
+    <!-- Spacer -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+    <!--////////-->
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:text="등록된 그림"
         android:textColor="@color/white"
         android:padding="8dp"
-        android:fontFamily="@font/nanum2"/>
+        android:fontFamily="@font/nanum2"
+        android:layout_gravity="center"/>
 
     <ImageView
         android:id="@+id/post_iv"
@@ -54,15 +84,19 @@
 
     <TextView
         android:id="@+id/new_comment_tv"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_gravity="center"
         android:text="추가하기"
         android:textSize="24sp"
-        android:padding="20dp"
+        android:paddingLeft="80dp"
+        android:paddingRight="80dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:visibility="visible"
         android:fontFamily="@font/nanum2"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:layout_marginTop="-100dp"/>
 
 </LinearLayout>

@@ -34,14 +34,12 @@ public class listFrag extends Fragment {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private RecyclerView.LayoutManager layoutManager;
-    TextView listCount;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.list_fragment,container,false);
 
-        listCount = (TextView) v.findViewById(R.id.list_count);
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존성능 강화
         layoutManager = new LinearLayoutManager(getContext());
@@ -68,9 +66,6 @@ public class listFrag extends Fragment {
                 Toast.makeText(getContext(), "데이터베이스 에러", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
 
         adapter = new Adapter(arrayList);
         recyclerView.setAdapter(adapter);
