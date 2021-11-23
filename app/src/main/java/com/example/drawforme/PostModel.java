@@ -41,21 +41,40 @@ public class PostModel {
         this.uuid = uuid;
     }
 
-    public void setIsExist(Boolean isExist) { this.isExist = isExist; }
+    public void setIsExist(Boolean isExist) {
+        this.isExist = isExist;
+    }
 
     public String getDesc() {
-        return this.desc;
+        return desc;
     }
 
     public String getTitle() {
-        return this.title;
+        return title;
     }
 
     public String getAuthor() {
-        return this.author;
+        return author;
     }
 
-    public String getUuid() { return this.uuid; }
+    public String getUuid() {
+        return uuid;
+    }
 
-    public Boolean getIsExist() { return this.isExist; }
+    public Boolean getIsExist() {
+        return isExist;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("title", title);
+        result.put("desc", desc);
+        result.put("author", author);
+        result.put("uuid", uuid);
+        result.put("isExist", isExist);
+
+        return result;
+    }
+
 }

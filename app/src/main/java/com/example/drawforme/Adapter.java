@@ -3,6 +3,7 @@ package com.example.drawforme;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Icon;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -49,6 +52,10 @@ public class Adapter extends RecyclerView.Adapter<Holder> {
         holder.tv.setText(postModelList.get(position).getTitle());
         holder.tv2.setText(postModelList.get(position).getAuthor());
 
+        if(postModelList.get(position).getIsExist() == true) {
+            DrawableCompat.setTint(holder.iv1.getDrawable(), ContextCompat.getColor(context, R.color.green1));
+        }
+
         holder.tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +63,7 @@ public class Adapter extends RecyclerView.Adapter<Holder> {
                 intent.putExtra("title_", postModelList.get(position).getTitle());
                 intent.putExtra("desc_", postModelList.get(position).getDesc());
                 intent.putExtra("uuid_", postModelList.get(position).getUuid());
+                intent.putExtra("author_", postModelList.get(position).getAuthor());
                 v.getContext().startActivity(intent);
             }
         });
@@ -71,10 +79,12 @@ public class Adapter extends RecyclerView.Adapter<Holder> {
 class Holder extends RecyclerView.ViewHolder {
     TextView tv; // title
     TextView tv2; // author
+    ImageView iv1; // left icons
 
     public Holder(@NonNull View itemView) {
         super(itemView);
         tv = itemView.findViewById(R.id.show_items_tv);
         tv2 = itemView.findViewById(R.id.show_author_name_tv);
+        iv1 = itemView.findViewById(R.id.left_icon);
     }
 }

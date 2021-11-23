@@ -16,9 +16,14 @@
         <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/drawable/border5.xml" value="0.3764102564102564" />
         <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/drawable/border6.xml" value="0.3764102564102564" />
         <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/drawable/border7.xml" value="0.3764102564102564" />
+        <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/drawable/border8.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/drawable/border9.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/drawable/drawable_view.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/drawable/drawable_view_focused.xml" value="1.7357142857142858" />
         <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/drawable/ic_baseline_check_circle_outline_24.xml" value="0.3764102564102564" />
+        <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/drawable/ic_baseline_check_circle_outline_24_2.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/drawable/ic_baseline_format_align_justify_24.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/drawable/image_upload_dialog.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/drawable/selector_view.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/font/font_1.xml" value="0.38981481481481484" />
         <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/layout/activity_add.xml" value="0.36614583333333334" />
@@ -27,6 +32,7 @@
         <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/layout/activity_post.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/layout/asking_fragment.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/layout/home_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/layout/image_upload_dialog.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/layout/item_recycler.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/layout/list_fragment.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/SU/Desktop/DFM/drawforme/app/src/main/res/layout/profile_fragment.xml" value="0.33" />

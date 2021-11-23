@@ -5,19 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PostActivity"
-    android:layout_margin="12dp"
-    android:background="@drawable/border1"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/sexy1"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp">
 
     <TextView
         android:id="@+id/get_title_from_adapter"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:text="title이 표시될 공간"
-        android:textColor="@color/black"
+        android:textColor="@color/sexy1"
         android:padding="8dp"
-        android:background="@drawable/border5"/>
+        android:maxLines="1"
+        android:fontFamily="@font/nanum1"
+        android:background="@drawable/border8"
+        android:layout_marginBottom="8dp"/>
 
     <TextView
         android:id="@+id/get_desc_from_adapter"
@@ -25,18 +31,19 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:text="desc가 표시될 공간"
-        android:textColor="@color/black"
+        android:textColor="@color/sexy1"
         android:padding="8dp"
-        android:background="@drawable/border5"/>
+        android:fontFamily="@font/nanum2"
+        android:background="@drawable/border8" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:text="등록된 그림"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:padding="8dp"
-        android:background="@drawable/border5" />
+        android:fontFamily="@font/nanum2"/>
 
     <ImageView
         android:id="@+id/post_iv"
@@ -54,14 +61,8 @@
         android:text="추가하기"
         android:textSize="24sp"
         android:padding="20dp"
-        android:visibility="visible"/>
-
-    <TextView
-        android:id="@+id/tmp_tmp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_gravity="center"
-        android:textSize="20sp"/>
+        android:visibility="visible"
+        android:fontFamily="@font/nanum2"
+        android:textColor="@color/white" />
 
 </LinearLayout>

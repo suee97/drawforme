@@ -62,18 +62,20 @@ public class AddActivity extends AppCompatActivity{
                     Toast.makeText(view.getContext(), "질문을 마저 채워주세요!", Toast.LENGTH_SHORT).show();
                 } else {
                     PostModel PM = new PostModel();
+                    // 처음엔 그림이 없다고 저장
+                    PM.setIsExist(false);
+
                     PM.setTitle(editTitle.getText().toString());
                     PM.setDesc(editDesc.getText().toString());
                     PM.setAuthor(mAuth.getCurrentUser().getDisplayName());
 
                     // 랜덤id
-                    String randomUUid = (UUID.randomUUID().toString().replaceAll("-",""));
-                    PM.setUuid(randomUUid);
+                    Long tmp_0 = System.currentTimeMillis();
+                    String time_uuid = tmp_0.toString();
+//                    String randomUUid = (UUID.randomUUID().toString().replaceAll("-",""));
+                    PM.setUuid(time_uuid);
 
-                    // 처음엔 그림이 없다고 저장
-                    PM.setIsExist(false);
-
-                    database.getReference().child("posts").push().setValue(PM); // 데이터 추가
+                    database.getReference().child("posts").child(time_uuid).setValue(PM); // 데이터 추가
                     editTitle.setText("");
                     editDesc.setText("");
                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
