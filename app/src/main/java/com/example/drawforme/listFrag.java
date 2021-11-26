@@ -2,6 +2,7 @@ package com.example.drawforme;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +37,7 @@ public class listFrag extends Fragment {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private RecyclerView.LayoutManager layoutManager;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Nullable
     @Override
@@ -47,6 +51,19 @@ public class listFrag extends Fragment {
         arrayList = new ArrayList<>();
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("posts");
+
+        /* 리사이클러뷰 새로고침 ===============================================================*/
+        swipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipe_layout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @SuppressWarnings("deprecation")
+            @Override
+            public void onRefresh() {
+                getFragmentManager().beginTransaction().replace(R.id.main_frame, new listFrag()).commit();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+        /*=============================================================== 리사이클러뷰 새로고침 */
+
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

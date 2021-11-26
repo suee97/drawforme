@@ -36,14 +36,16 @@ public class homeFrag extends Fragment implements View.OnClickListener{
         View v=inflater.inflate(R.layout.home_fragment,container,false);
 
         TextView nameTv = v.findViewById(R.id.name);
-        pager = v.findViewById(R.id.pager);
+        pager = v.findViewById(R.id.pager_s);
         pager.setOffscreenPageLimit(2);
 
         PagerAdapter PA = new PagerAdapter(getFragmentManager());
         Fragment1 fragment1 = new Fragment1();
         Fragment2 fragment2 = new Fragment2();
+        Fragment3 fragment3 = new Fragment3();
         PA.addItem(fragment1);
         PA.addItem(fragment2);
+        PA.addItem(fragment3);
         pager.setAdapter(PA);
 
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(requireContext());
@@ -89,6 +91,7 @@ class PagerAdapter extends FragmentStatePagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return "페이지" + position;
+        return null;
+//        return "페이지" + position;
     }
 }

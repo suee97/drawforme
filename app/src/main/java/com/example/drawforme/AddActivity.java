@@ -3,6 +3,7 @@ package com.example.drawforme;
 import static android.os.Build.ID;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -32,7 +34,7 @@ import java.util.UUID;
 public class AddActivity extends AppCompatActivity{
 
     EditText editTitle, editDesc;
-    Button saveBtn;
+    TextView saveBtn;
     BottomNavigationView bottomNavigationView;
 
     private FirebaseAuth mAuth;
@@ -45,7 +47,8 @@ public class AddActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
-        /* 새로운 글 등록 화면 */
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         mAuth = FirebaseAuth.getInstance();
         storage = FirebaseStorage.getInstance();
@@ -53,7 +56,7 @@ public class AddActivity extends AppCompatActivity{
 
         editTitle = (EditText) findViewById(R.id.get_title_et);
         editDesc = (EditText) findViewById(R.id.get_desc_et);
-        saveBtn = (Button) findViewById(R.id.save_title_desc_btn);
+        saveBtn = (TextView) findViewById(R.id.save_title_desc_btn);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 

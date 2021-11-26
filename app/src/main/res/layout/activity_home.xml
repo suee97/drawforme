@@ -15,7 +15,9 @@
         app:menu="@menu/bottom_menu"
         app:labelVisibilityMode="unlabeled"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        app:itemIconTint="@drawable/menu_selector"
+        app:itemTextColor="@drawable/menu_selector"/>
 
     <FrameLayout
         android:id="@+id/main_frame"

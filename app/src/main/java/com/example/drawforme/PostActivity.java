@@ -2,6 +2,7 @@ package com.example.drawforme;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.content.CursorLoader;
@@ -54,6 +55,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.google.protobuf.Value;
 
 import org.w3c.dom.Text;
 
@@ -75,11 +77,13 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
 
     String strTitle, strDesc, uuid, strAuth;
     TextView tvTitle, tvDesc, tvNewComment, deleteBtn;
-    Button imgUploadBtn;
     Uri photoURI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
@@ -93,7 +97,6 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
         tvTitle = (TextView) findViewById(R.id.get_title_from_adapter);
         tvDesc = (TextView) findViewById(R.id.get_desc_from_adapter);
         tvNewComment = (TextView) findViewById(R.id.new_comment_tv);
-        imgUploadBtn = (Button) findViewById(R.id.img_upload_btn);
         deleteBtn = (TextView) findViewById(R.id.delete_post_btn);
         deleteBtn.setOnClickListener(this);
 
@@ -108,8 +111,9 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
         tvDesc.setText(strDesc + "\nuuid = " + uuid);
         tvDesc.setMovementMethod(new ScrollingMovementMethod());
 
-        // 추가버튼 클릭 시
+        // 버튼 클릭리스너 등록
         tvNewComment.setOnClickListener(this);
+        postIv.setOnClickListener(this);
 
         // 유저랑 작성자 다르면 삭제버튼 disabled
         if(user.getDisplayName().equals(strAuth) != true) {
@@ -186,6 +190,7 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
         startActivityForResult(intent, FROM_ALBUM);
     }
 
+    // DB업데이트 함수(REAL TIME DB)
     public void updateDB(String strTitle, String strDesc, String strAuth, String uuid, Boolean isExist) {
         PostModel PM = new PostModel(strTitle, strDesc, strAuth, uuid, isExist);
         Map<String, Object> postValues = PM.toMap();
@@ -194,10 +199,11 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
         databaseReference.updateChildren(childUpdate);
     }
 
+
+    // 클릭리스너
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
             // 삭제 버튼(포스트, 그림 지우기)
             case R.id.delete_post_btn:
                 if (user.getDisplayName().equals(strAuth) != true) {
@@ -246,7 +252,7 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.new_comment_tv:
                 AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
                 builder.setTitle("이미지 업로드")
-                        .setMessage("그림 업로드하기\n아래 추가버튼을 눌러주세요")
+                        .setMessage("아래의 추가버튼을 누르시면\n앨범으로 이동합니다.")
                         .setPositiveButton("추가하기", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 selectAlbum();
@@ -254,6 +260,13 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
                         });
                 AlertDialog alert = builder.create();
                 alert.show();
+                break;
+
+
+            // 이미지 클릭 시
+            case R.id.post_iv:
+
+
                 break;
 
             default:

@@ -76,17 +76,17 @@
 
     </LinearLayout>
 
-    <Button
+    <TextView
         android:id="@+id/save_title_desc_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_gravity="center"
-        android:backgroundTint="@color/white"
         android:fontFamily="@font/nanum2"
         android:text="요청하기"
+        android:padding="16dp"
         android:textColor="@color/black"
         android:background="@drawable/border7"
-        android:layout_marginTop="120dp"/>
+        android:layout_marginTop="140dp"/>
 
 </LinearLayout>
