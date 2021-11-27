@@ -2,9 +2,21 @@
 <resources>
     <string name="app_name">drawforme</string>
 
-    <string name="dlg_1">
-        사용법이 표시될 공간입니다.\n\n\n\n\n\n\n
+
+    <string name="app_info_str">
+        - 앱 이름:  Draw for me\n
+        - 만든이:  오승언, 노디르벡\n
+        - 주요기능\n  Firebase를 이용한 RealTimeDatabase와 Storage 이용\n
+        - 사용목적\n  다른 사람들에게 그림을 요청해 받을 수 있다.
+
     </string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="how_to_use_str">
+        - 요청화면에서 제목과 요청사항을 적어 포스트를 올릴 수 있습니다.\n
+        - 리스트화면에서는 다른 사람이 올린 포스트를 포함한 포스트를 확인할 수 있습니다.\n
+        - 하나의 항목 왼쪽의 체크표시는 그림이 등록되었는지 아닌지를 나타냅니다.\n
+        - 포스트의 삭제는 본인만 가능합니다.
+    </string>
+
 </resources>

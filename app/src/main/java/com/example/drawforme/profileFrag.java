@@ -31,6 +31,8 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -45,6 +47,8 @@ public class profileFrag extends Fragment implements View.OnClickListener {
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mAuth;
 
+    TextView appInfoBtn, howToUseBtn, tvProfileSection;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,8 +56,13 @@ public class profileFrag extends Fragment implements View.OnClickListener {
 
         TextView email = v.findViewById(R.id.email_address);
         TextView logout_btn = v.findViewById(R.id.logout_btn);
+        appInfoBtn = (TextView) v.findViewById(R.id.app_info_btn);
+        howToUseBtn = (TextView) v.findViewById(R.id.how_to_use_btn);
+        tvProfileSection = (TextView) v.findViewById(R.id.tv_profileSection);
 
         logout_btn.setOnClickListener(this);
+        appInfoBtn.setOnClickListener(this);
+        howToUseBtn.setOnClickListener(this);
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(requireContext());
         email.setText(signInAccount.getEmail());
 
@@ -104,6 +113,18 @@ public class profileFrag extends Fragment implements View.OnClickListener {
                 alert.show();
                 // 로그아웃 다이얼로그 =========================================================
 
+                break;
+
+            case R.id.app_info_btn:
+                tvProfileSection.setText(R.string.app_info_str);
+
+                break;
+            case R.id.how_to_use_btn:
+                tvProfileSection.setText(R.string.how_to_use_str);
+
+                break;
+
+            default:
                 break;
         }
     }

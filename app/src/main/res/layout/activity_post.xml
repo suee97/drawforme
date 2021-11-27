@@ -36,7 +36,8 @@
         android:fontFamily="@font/nanum2"
         android:background="@drawable/border8"
         android:maxLines="8"
-        android:lines="8"/>
+        android:lines="8"
+        android:scrollbars="vertical"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,8 +55,7 @@
             android:fontFamily="@font/nanum2"
             android:background="@drawable/border9"
             android:padding="8dp"
-            android:layout_margin="4dp"
-            android:scrollbars="vertical"/>
+            android:layout_margin="4dp" />
 
     </LinearLayout>
 

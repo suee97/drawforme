@@ -9,6 +9,7 @@ import androidx.loader.content.CursorLoader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -60,8 +61,10 @@ import com.google.protobuf.Value;
 import org.w3c.dom.Text;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -113,7 +116,6 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
 
         // 버튼 클릭리스너 등록
         tvNewComment.setOnClickListener(this);
-        postIv.setOnClickListener(this);
 
         // 유저랑 작성자 다르면 삭제버튼 disabled
         if(user.getDisplayName().equals(strAuth) != true) {
@@ -201,6 +203,7 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
 
 
     // 클릭리스너
+    @SuppressLint("ResourceType")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -260,13 +263,6 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
                         });
                 AlertDialog alert = builder.create();
                 alert.show();
-                break;
-
-
-            // 이미지 클릭 시
-            case R.id.post_iv:
-
-
                 break;
 
             default:
