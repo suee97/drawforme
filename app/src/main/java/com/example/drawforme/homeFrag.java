@@ -27,13 +27,17 @@ import java.util.ArrayList;
 
 import javax.annotation.Nullable;
 
-public class homeFrag extends Fragment implements View.OnClickListener{
+/**
+ * Home화면 + pager연결
+ */
+
+public class homeFrag extends Fragment {
     ViewPager pager;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.home_fragment,container,false);
+        View v = inflater.inflate(R.layout.home_fragment, container, false);
 
         TextView nameTv = v.findViewById(R.id.name);
         pager = v.findViewById(R.id.pager_s);
@@ -51,16 +55,10 @@ public class homeFrag extends Fragment implements View.OnClickListener{
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(requireContext());
         if (signInAccount != null) {
             nameTv.setText(signInAccount.getDisplayName() + "님 환영합니다.");
-        }else {
+        } else {
             nameTv.setText("invalid user");
         }
         return v;
-    }
-
-    // 클릭 리스너
-    @Override
-    public void onClick(View view) {
-        // 클릭 리스너
     }
 }
 
@@ -68,11 +66,9 @@ public class homeFrag extends Fragment implements View.OnClickListener{
 @SuppressWarnings("deprecation")
 class PagerAdapter extends FragmentStatePagerAdapter {
     ArrayList<Fragment> items = new ArrayList<Fragment>();
-
     public PagerAdapter(FragmentManager fm) {
         super(fm);
     }
-
     public void addItem(Fragment item) {
         items.add(item);
     }
@@ -92,6 +88,5 @@ class PagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         return null;
-//        return "페이지" + position;
     }
 }

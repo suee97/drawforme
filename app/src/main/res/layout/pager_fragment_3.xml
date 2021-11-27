@@ -5,11 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".Fragment3">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="page 333"
-        android:textColor="@color/black"/>
+        android:src="@drawable/pager_3"/>
 
 </FrameLayout>

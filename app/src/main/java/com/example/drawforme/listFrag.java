@@ -68,8 +68,6 @@ public class listFrag extends Fragment {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                Query select = FirebaseDatabase.getInstance().getReference().child("posts");
-//                Toast.makeText(getContext(), select.toString(), Toast.LENGTH_LONG).show();
                 arrayList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren() ) {
                     PostModel postModelList = snapshot.getValue(PostModel.class);

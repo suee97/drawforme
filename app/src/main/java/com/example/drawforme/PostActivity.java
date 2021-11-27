@@ -111,7 +111,7 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
 
         // 제목, 내용 보이게 하기
         tvTitle.setText(strTitle);
-        tvDesc.setText(strDesc + "\nuuid = " + uuid);
+        tvDesc.setText(strDesc);
         tvDesc.setMovementMethod(new ScrollingMovementMethod());
 
         // 버튼 클릭리스너 등록

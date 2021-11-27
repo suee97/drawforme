@@ -131,11 +131,6 @@ public class profileFrag extends Fragment implements View.OnClickListener {
 
     // 로그아웃 함수
     public void signOut() {
-//        FirebaseAuth.getInstance().signOut();
-//        Intent intent = new Intent(requireContext(), MainActivity.class);
-//        startActivity(intent);
-//        Toast.makeText(requireContext(), "로그아웃합니다.", Toast.LENGTH_LONG).show();
-
         mGoogleApiClient.connect();
         mGoogleApiClient.registerConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
             @Override
@@ -155,7 +150,6 @@ public class profileFrag extends Fragment implements View.OnClickListener {
                     });
                 }
             }
-
             @Override
             public void onConnectionSuspended(int i) {
                 getActivity().setResult(-1);

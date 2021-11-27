@@ -24,6 +24,8 @@ public class askingFrag extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.asking_fragment,container,false);
 
+        // 포스트 추가는 AddActivity에서 동작
+
         return v;
     }
 }

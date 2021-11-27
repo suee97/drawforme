@@ -9,25 +9,29 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="show welcome message"
-        android:textSize="30sp"
+        android:text="welcome message"
+        android:textSize="36sp"
         android:fontFamily="@font/nanum1"
-        android:layout_margin="30dp"
+        android:layout_marginVertical="48dp"
+        android:layout_gravity="center"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="사용예시"
+        android:textSize="24sp"
+        android:fontFamily="@font/nanum1"
         android:layout_gravity="center"
         android:textColor="@color/white"/>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager_s"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_margin="30dp"
+        android:layout_width="320dp"
+        android:layout_height="480dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
         android:background="@color/white">
-
-        <!-- pager title -->
-<!--        <androidx.viewpager.widget.PagerTitleStrip-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:padding="8dp" />-->
 
     </androidx.viewpager.widget.ViewPager>
 
