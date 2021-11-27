@@ -20,6 +20,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.material.tabs.TabLayout;
 
 import org.w3c.dom.Text;
 
@@ -51,6 +52,9 @@ public class homeFrag extends Fragment {
         PA.addItem(fragment2);
         PA.addItem(fragment3);
         pager.setAdapter(PA);
+
+        TabLayout tabLayout = (TabLayout) v.findViewById(R.id.tab_layout);
+        tabLayout.setupWithViewPager(pager, true);
 
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(requireContext());
         if (signInAccount != null) {
