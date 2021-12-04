@@ -24,6 +24,7 @@ public class PostModel {
         this.uuid = uuid;
         this.isExist = isExist;
     }
+    // ...
 
     public void setDesc(String desc) {
         this.desc = desc;
@@ -76,5 +77,4 @@ public class PostModel {
 
         return result;
     }
-
 }

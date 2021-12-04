@@ -66,7 +66,6 @@ public class AddActivity extends AppCompatActivity{
                 if(editTitle.getText().toString().isEmpty() || editDesc.getText().toString().isEmpty()) {
                     Toast.makeText(view.getContext(), "질문을 마저 채워주세요!", Toast.LENGTH_SHORT).show();
                 } else {
-
                     // 데이터 저장 부분 ==================================================================== //
                     PostModel PM = new PostModel();
                     PM.setIsExist(false); // 처음엔 그림이 없다고 저장
@@ -81,8 +80,7 @@ public class AddActivity extends AppCompatActivity{
                     database.getReference().child("posts").child(time_uuid).setValue(PM); // 데이터 추가
                     editTitle.setText("");
                     editDesc.setText("");
-                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                    startActivity(intent);
+                    finish();
                     Toast.makeText(getApplicationContext(), "저장이 완료되었습니다.", Toast.LENGTH_LONG).show();
                     // ===================================================================== 데이터 저장 부분 //
                 }

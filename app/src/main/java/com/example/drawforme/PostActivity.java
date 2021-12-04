@@ -68,6 +68,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+@SuppressWarnings("deprecation")
 public class PostActivity extends AppCompatActivity implements View.OnClickListener {
 
     private int FROM_ALBUM = 10;
@@ -122,7 +123,6 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
             deleteBtn.setBackgroundResource(R.drawable.border10);
             deleteBtn.setEnabled(false);
         }
-
 
         // 이미지 있으면 불러오기
         StorageReference storageRef = storage
@@ -201,7 +201,6 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
         databaseReference.updateChildren(childUpdate);
     }
 
-
     // 클릭리스너
     @SuppressLint("ResourceType")
     @Override
@@ -268,6 +267,11 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 
     // 토스트 만들기 + 보여주기
